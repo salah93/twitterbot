@@ -2,7 +2,7 @@
 An outline to get you started building your twitter bot
 
 ## Install
-` pip install salahstwitterbot `
+` pip install salahs-twitterbot `
 
 ## Twitter API
 - create a new [twitter application](https://apps.twitter.com/)
