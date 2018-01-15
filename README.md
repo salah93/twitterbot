@@ -1,4 +1,4 @@
-# Translate Bot
+# Twitter Bot
 An outline to get you started building your twitter bot
 
 ## Install
