@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/salah93/twitterbot.svg?branch=master)](https://travis-ci.org/salah93/twitterbot)
 
 # Twitter Bot
-An outline to get you started building your twitter bot
+delete old tweets
 
 ## Install
 ` pip install salahs-twitterbot `
