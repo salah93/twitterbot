@@ -19,7 +19,7 @@ scripts_deps = [
 
 setup(
     name="salahs-twitterbot",
-    version="1.1.0",
+    version="1.1.1",
     description="twitterbot to search hashtags",
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
