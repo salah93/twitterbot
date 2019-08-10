@@ -6,7 +6,7 @@ twitter bot
 + get trending tweets
 
 ## Install
-` pip install salahs-twitterbot `
+` pip install salahs-twitterbot[scripts]`
 
 ## Twitter API
 - create a new [twitter application](https://apps.twitter.com/)
