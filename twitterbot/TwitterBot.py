@@ -30,11 +30,23 @@ class TwitterBot:
         token = oauth.Token(key=self.__key, secret=self.__secret)
         return oauth.Client(consumer, token)
 
+    @property
+    def trending_url(self):
+        return "https://api.twitter.com/1.1/trends/place.json?"
+
     def get_my_tweets(self, max_id=None):
         search_query = {"count": 200}
         if max_id:
             search_query["max_id"] = max_id
         url = self.my_tweets_url + urlencode(search_query)
+        response, tweets = self.__client.request(
+            url.encode("ascii"), method="GET", body="".encode("utf-8"), headers=None
+        )
+        return response, json.loads(tweets.decode("utf-8"))
+
+    def get_trending(self, where_on_earth_id=1):
+        search_query = {"id": where_on_earth_id}
+        url = self.trending_url + urlencode(search_query)
         response, tweets = self.__client.request(
             url.encode("ascii"), method="GET", body="".encode("utf-8"), headers=None
         )
