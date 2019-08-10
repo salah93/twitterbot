@@ -12,10 +12,14 @@ tests_deps = [
     "httpretty>=0.9.6,<1.0.0",
 ]
 
+scripts_deps = [
+    'yweather>=0.1,<1.0'
+]
+
 
 setup(
     name="salahs-twitterbot",
-    version="1.0.1",
+    version="1.1.0",
     description="twitterbot to search hashtags",
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
@@ -38,6 +42,7 @@ setup(
     tests_require=tests_deps,
     extras_require={
         'test': tests_deps,
+        'scripts': scripts_deps,
     },
     entry_points={
         "console_scripts": {
