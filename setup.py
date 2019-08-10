@@ -6,6 +6,13 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     DESCRIPTION = f.read()
 
+
+tests_deps = [
+    "pytest>=4.0.0,<5.0.0",
+    "httpretty>=0.9.6,<1.0.0",
+]
+
+
 setup(
     name="salahs-twitterbot",
     version="1.0.1",
@@ -28,10 +35,10 @@ setup(
     install_requires=[
         "oauth2>=1.9.0.post1,<2.0.0"
     ],
-    tests_require=[
-        "pytest>=4.0.0,<5.0.0",
-        "httpretty>=0.9.6,<1.0.0",
-    ],
+    tests_require=tests_deps,
+    extras_require={
+        'test': tests_deps,
+    },
     entry_points={
         "console_scripts": {"delete_old_tweets = twitterbot.scripts.delete_tweets:main"}
     },
