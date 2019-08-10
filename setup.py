@@ -40,6 +40,9 @@ setup(
         'test': tests_deps,
     },
     entry_points={
-        "console_scripts": {"delete_old_tweets = twitterbot.scripts.delete_tweets:main"}
+        "console_scripts": {
+            "delete_old_tweets = twitterbot.scripts.delete_tweets:main",
+            "get_trending_tweets = twitterbot.scripts.get_trending:main",
+        }
     },
 )
