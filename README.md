@@ -1,7 +1,9 @@
 [![Build Status](https://travis-ci.org/salah93/twitterbot.svg?branch=master)](https://travis-ci.org/salah93/twitterbot)
 
 # Twitter Bot
-delete old tweets
+twitter bot
++ delete tweets
++ get trending tweets
 
 ## Install
 ` pip install salahs-twitterbot `
@@ -18,3 +20,4 @@ export TWITTER_ACCESS_TOKEN_SECRET='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ```
 
 - `delete_old_tweets --help`
+- `get_trending_tweets --help`
