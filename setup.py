@@ -1,14 +1,17 @@
+from os import path
 from setuptools import find_packages, setup
 
 
-with open("README.rst") as f:
-    DESCRIPTION = "\n".join(f.readlines())
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    DESCRIPTION = f.read()
 
 setup(
     name="salahs-twitterbot",
-    version="1.0",
+    version="1.0.1",
     description="twitterbot to search hashtags",
     long_description=DESCRIPTION,
+    long_description_content_type='text/markdown',
     classifiers=[
         "Programming Language :: Python",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
