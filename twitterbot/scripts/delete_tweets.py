@@ -1,18 +1,13 @@
 import datetime as dt
 import json
-import os
 
 from argparse import ArgumentParser
-from ..TwitterBot import TwitterBot
+from .utils import get_bot
 
 
 def main():
     args = get_args()
-    consumer_key = os.environ["TWITTER_CONSUMER_KEY"]
-    consumer_secret = os.environ["TWITTER_CONSUMER_SECRET"]
-    key = os.environ["TWITTER_ACCESS_TOKEN"]
-    secret = os.environ["TWITTER_ACCESS_TOKEN_SECRET"]
-    twitterbot = TwitterBot(consumer_key, consumer_secret, key, secret)
+    twitterbot = get_bot()
     response, my_tweets = twitterbot.get_my_tweets(args.max_id)
     datetime_format = "%a %b %d %H:%M:%S +0000 %Y"
     x_days_ago_from_now = dt.datetime.utcnow() - dt.timedelta(days=args.days)
