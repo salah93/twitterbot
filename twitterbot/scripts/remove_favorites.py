@@ -10,16 +10,17 @@ def main():
     twitterbot = get_bot()
     try:
         first_old_tweet_id = get_oldest_tweet(
-            twitterbot.get_my_tweets, args.days, args.max_id
+            twitterbot.get_my_favorites, args.days, args.max_id
         )
     except RuntimeError:
         old_tweets = []
     else:
         _, old_tweets = twitterbot.get_my_favorites(max_id=first_old_tweet_id)
+
     logger.info('found %s tweets' % len(old_tweets))
     for tweet in old_tweets:
-        response, deleted_tweet = twitterbot.delete_tweet(tweet["id"])
-        print(json.dumps(deleted_tweet))
+        response, removed_favorite = twitterbot.remove_favorite(tweet["id"])
+        print(json.dumps(removed_favorite))
 
 
 def get_args():

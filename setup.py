@@ -19,7 +19,7 @@ scripts_deps = [
 
 setup(
     name="salahs-twitterbot",
-    version="1.1.1",
+    version="1.2.0",
     description="twitterbot to search hashtags",
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
@@ -48,6 +48,7 @@ setup(
         "console_scripts": {
             "delete_old_tweets = twitterbot.scripts.delete_tweets:main",
             "get_trending_tweets = twitterbot.scripts.get_trending:main",
+            "remove_favorites = twitterbot.scripts.remove_favorites:main",
         }
     },
 )
