@@ -1,11 +1,13 @@
 import json
+import logging
 
 from argparse import ArgumentParser
-from .utils import get_bot, get_oldest_tweet, get_logger
+from .utils import get_bot, get_oldest_tweet, configure_logger
 
 
 def main():
-    logger = get_logger(__name__)
+    configure_logger()
+    logger = logging.getLogger(__name__)
     args = get_args()
     twitterbot = get_bot()
     try:

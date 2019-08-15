@@ -1,4 +1,5 @@
 from ..TwitterBot import TwitterBot
+from logging.handlers import RotatingFileHandler
 from operator import itemgetter
 
 import datetime as dt
@@ -9,17 +10,22 @@ import random
 import time
 
 
+logger = logging.getLogger(__name__)
+
+
 def get_bot():
-    consumer_key = os.environ["TWITTER_CONSUMER_KEY"]
-    consumer_secret = os.environ["TWITTER_CONSUMER_SECRET"]
-    key = os.environ["TWITTER_ACCESS_TOKEN"]
-    secret = os.environ["TWITTER_ACCESS_TOKEN_SECRET"]
+    try:
+        consumer_key = os.environ["TWITTER_CONSUMER_KEY"]
+        consumer_secret = os.environ["TWITTER_CONSUMER_SECRET"]
+        key = os.environ["TWITTER_ACCESS_TOKEN"]
+        secret = os.environ["TWITTER_ACCESS_TOKEN_SECRET"]
+    except KeyError:
+        logger.exception('bad config')
+        raise RuntimeError
     return TwitterBot(consumer_key, consumer_secret, key, secret)
 
 
 def get_oldest_tweet(get_tweets_fn, days, max_id=None):
-    logger = get_logger(__name__)
-
     x_days_ago_from_now = dt.datetime.utcnow() - dt.timedelta(days=days)
     datetime_format = "%a %b %d %H:%M:%S +0000 %Y"
 
@@ -57,13 +63,10 @@ def get_oldest_tweet(get_tweets_fn, days, max_id=None):
     return loop(max_id)
 
 
-def get_logger(name, level=logging.INFO):
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    ch = logging.StreamHandler()
+def configure_logger(level=logging.INFO):
+    ch = RotatingFileHandler('/tmp/error.log')
     formatter = logging.Formatter(
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
     ch.setFormatter(formatter)
-    logger.addHandler(ch)
-    return logger
+    logging.basicConfig(level=level, handlers=[ch])
