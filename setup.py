@@ -19,8 +19,8 @@ scripts_deps = [
 
 setup(
     name="salahs-twitterbot",
-    version="1.2.1",
-    description="twitterbot to search hashtags",
+    version="1.2.2",
+    description="twitterbot to remove/view favorites/tweets and view trending tweets",
     long_description=DESCRIPTION,
     long_description_content_type='text/markdown',
     classifiers=[
