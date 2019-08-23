@@ -17,7 +17,7 @@ def main():
     except RuntimeError:
         old_tweets = []
     else:
-        _, old_tweets = twitterbot.get_my_favorites(max_id=first_old_tweet_id)
+        _, old_tweets = twitterbot.get_my_tweets(max_id=first_old_tweet_id)
     logger.info('found %s tweets' % len(old_tweets))
     for tweet in old_tweets:
         response, deleted_tweet = twitterbot.delete_tweet(tweet["id"])
