@@ -32,17 +32,14 @@ def get_oldest_tweet(get_tweets_fn, days, max_id=None):
         return tweet_time >= x_days_ago_from_now
 
     def loop(max_id=None):
-        for i in range(2):
-            response, my_tweets = get_tweets_fn(max_id=max_id)
+        response, my_tweets = get_tweets_fn(max_id=max_id)
+        try:
             if response.status == 429:
-                logger.debug("rate limit exceeded")
-                secs = random.choice(range(2, 6))
-                logger.debug("sleeping %s seconds" % secs)
-                time.sleep(secs)
-            if response.status == 200:
-                break
-        else:
-            raise RuntimeError("rate limit exceeded")
+                raise RuntimeError("rate limit exceeded")
+            elif response.status == 401:
+                raise RuntimeError("bad authentication")
+        except RuntimeError:
+            logger.exception("could not get tweets")
         logger.info("my tweets %s" % [t["id"] for t in my_tweets])
         old_tweets = list(itertools.dropwhile(is_tweet_younger_than_x_days, my_tweets))
         if len(old_tweets):
