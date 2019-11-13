@@ -1,5 +1,4 @@
 from ..TwitterBot import TwitterBot
-from logging.handlers import RotatingFileHandler
 from operator import itemgetter
 
 import datetime as dt
@@ -10,10 +9,8 @@ import random
 import time
 
 
-logger = logging.getLogger(__name__)
-
-
 def get_bot():
+    logger = logging.getLogger(__name__)
     try:
         consumer_key = os.environ["TWITTER_CONSUMER_KEY"]
         consumer_secret = os.environ["TWITTER_CONSUMER_SECRET"]
@@ -26,6 +23,7 @@ def get_bot():
 
 
 def get_oldest_tweet(get_tweets_fn, days, max_id=None):
+    logger = logging.getLogger(__name__)
     x_days_ago_from_now = dt.datetime.utcnow() - dt.timedelta(days=days)
     datetime_format = "%a %b %d %H:%M:%S +0000 %Y"
 
@@ -64,9 +62,12 @@ def get_oldest_tweet(get_tweets_fn, days, max_id=None):
 
 
 def configure_logger(level=logging.INFO):
-    ch = RotatingFileHandler('/tmp/error.log')
     formatter = logging.Formatter(
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
-    ch.setFormatter(formatter)
-    logging.basicConfig(level=level, handlers=[ch])
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(formatter)
+    handler.setLevel(level)
+    logger = logging.getLogger()
+    logger.addHandler(handler)
+    logger.setLevel(level)
