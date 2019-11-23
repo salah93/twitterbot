@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python setup.py install'
+                python setup.py install
             }
         }
     }
