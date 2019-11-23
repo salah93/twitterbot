@@ -7,6 +7,9 @@ pipeline {
                     image 'twitterbot' 
                 }
             }
+            steps {
+                sh 'python setup.py install'
+            }
         }
     }
 }
