@@ -8,7 +8,6 @@ pipeline {
                 }
             }
             steps {
-                python setup.py install
             }
         }
     }
