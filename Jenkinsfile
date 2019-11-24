@@ -6,6 +6,7 @@ pipeline {
                 sh 'ls -l'
                 sh 'pwd'
                 sh 'ls -l /'
+                sh '/twitterbot-virtualenv/bin/python setup.py test'
             }
         }
     }
