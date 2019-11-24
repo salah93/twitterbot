@@ -1,13 +1,13 @@
 pipeline {
-    agent none 
+    agent {
+        docker {
+            image 'twitterbot'
+        }
+    }
     stages {
-        stage('Build') { 
-            agent {
-                docker {
-                    image 'twitterbot' 
-                }
-            }
+        stage('Run Test') {
             steps {
+                'env/bin/python setup.py test'
             }
         }
     }
