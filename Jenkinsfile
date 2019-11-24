@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'twitterbot'
-        }
-    }
+    agent { dockerfile true }
     stages {
         stage('Run Test') {
             steps {
