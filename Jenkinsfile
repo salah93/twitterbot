@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Run Test') {
             steps {
-                sh 'echo hello'
+                'env/bin/python setup.py test'
             }
         }
     }
