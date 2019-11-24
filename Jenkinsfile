@@ -5,6 +5,8 @@ pipeline {
             steps {
                 sh 'cd /twitterbot'
                 sh 'ls -l'
+                sh 'pwd'
+                sh 'ls -l /'
             }
         }
     }
