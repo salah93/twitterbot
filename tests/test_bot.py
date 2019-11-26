@@ -218,3 +218,13 @@ def test_delete(bot, tweet):
     )
     response, tweet = bot.delete_tweet(tweet_id)
     assert response.status == 200
+
+
+@httpretty.activate
+def test_delete(bot, tweet):
+    tweet_id = 1
+    httpretty.register_uri(
+        httpretty.POST, bot.delete_url(tweet_id), json=tweet, status=200
+    )
+    response, tweet = bot.delete_tweet(tweet_id)
+    assert response.status == 200
