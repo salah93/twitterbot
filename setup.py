@@ -8,8 +8,9 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 
 tests_deps = [
-    "pytest>=4.0.0,<5.0.0",
+    "pytest-coverage",
     "httpretty>=0.9.6,<1.0.0",
+    "coverage[toml]",
 ]
 
 scripts_deps = [
@@ -35,7 +36,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    setup_requires=["pytest-runner"],
     install_requires=[
         "oauth2>=1.9.0.post1,<2.0.0"
     ],
