@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/salah93/twitterbot.svg?branch=master)](https://travis-ci.org/salah93/twitterbot)
-
 # Twitter Bot
 twitter bot
 + delete tweets

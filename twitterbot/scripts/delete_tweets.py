@@ -1,8 +1,8 @@
 import json
 import logging
-
 from argparse import ArgumentParser
-from .utils import get_bot, get_oldest_tweet, configure_logger
+
+from .utils import configure_logger, get_bot, get_oldest_tweet
 
 
 def main():
@@ -18,7 +18,7 @@ def main():
         old_tweets = []
     else:
         _, old_tweets = twitterbot.get_my_tweets(max_id=first_old_tweet_id)
-    logger.info('found %s tweets' % len(old_tweets))
+    logger.info("found %s tweets" % len(old_tweets))
     for tweet in old_tweets:
         response, deleted_tweet = twitterbot.delete_tweet(tweet["id"])
         print(json.dumps(deleted_tweet))
@@ -26,7 +26,9 @@ def main():
 
 def get_args():
     parser = ArgumentParser()
-    parser.add_argument("days", type=int, help="tweets older than this will be deleted")
+    parser.add_argument(
+        "days", type=int, help="tweets older than this will be deleted"
+    )
     parser.add_argument("--max_id")
     args = parser.parse_args()
     return args

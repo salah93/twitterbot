@@ -1,6 +1,5 @@
-import pytest
 import httpretty
-
+import pytest
 from twitterbot.TwitterBot import TwitterBot
 
 
@@ -205,18 +204,10 @@ def tweet():
 
 @httpretty.activate
 def test_get(bot, tweet):
-    httpretty.register_uri(httpretty.GET, bot.my_tweets_url, json=[tweet], status=200)
-    response, tweets = bot.get_my_tweets()
-    assert response.status == 200
-
-
-@httpretty.activate
-def test_delete(bot, tweet):
-    tweet_id = 1
     httpretty.register_uri(
-        httpretty.POST, bot.delete_url(tweet_id), json=tweet, status=200
+        httpretty.GET, bot.my_tweets_url, json=[tweet], status=200
     )
-    response, tweet = bot.delete_tweet(tweet_id)
+    response, tweets = bot.get_my_tweets()
     assert response.status == 200
 
 
