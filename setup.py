@@ -36,7 +36,7 @@ setup(
     zip_safe=False,
     install_requires=["oauth2>=1.9.0.post1,<2.0.0"],
     tests_require=tests_deps,
-    extras_require={"test": tests_deps, "scripts": scripts_deps,},
+    extras_require={"test": tests_deps, "scripts": scripts_deps},
     entry_points={
         "console_scripts": {
             "delete_old_tweets = twitterbot.scripts.delete_tweets:main",

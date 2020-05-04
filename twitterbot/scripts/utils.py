@@ -2,9 +2,7 @@ import datetime as dt
 import itertools
 import logging
 import os
-import random
-import time
-from operator import itemgetter
+import sys
 
 from ..TwitterBot import TwitterBot
 
