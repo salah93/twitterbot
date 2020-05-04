@@ -1,9 +1,9 @@
 from os import path
+
 from setuptools import find_packages, setup
 
-
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
     DESCRIPTION = f.read()
 
 
@@ -13,9 +13,7 @@ tests_deps = [
     "coverage[toml]",
 ]
 
-scripts_deps = [
-    'yweather>=0.1,<1.0'
-]
+scripts_deps = ["yweather>=0.1,<1.0"]
 
 
 setup(
@@ -23,7 +21,7 @@ setup(
     version="1.2.3",
     description="twitterbot to remove/view favorites/tweets and view trending tweets",
     long_description=DESCRIPTION,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     classifiers=[
         "Programming Language :: Python",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
@@ -36,14 +34,9 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=[
-        "oauth2>=1.9.0.post1,<2.0.0"
-    ],
+    install_requires=["oauth2>=1.9.0.post1,<2.0.0"],
     tests_require=tests_deps,
-    extras_require={
-        'test': tests_deps,
-        'scripts': scripts_deps,
-    },
+    extras_require={"test": tests_deps, "scripts": scripts_deps,},
     entry_points={
         "console_scripts": {
             "delete_old_tweets = twitterbot.scripts.delete_tweets:main",
