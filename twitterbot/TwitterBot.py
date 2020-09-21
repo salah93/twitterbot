@@ -30,8 +30,10 @@ class TwitterBot:
         return "https://api.twitter.com/1.1/statuses/user_timeline.json?"
 
     def delete_url(self, tweet_id):
-        return "https://api.twitter.com/1.1/statuses/destroy/{id}.json?".format(
-            id=tweet_id
+        return (
+            "https://api.twitter.com/1.1/statuses/destroy/{id}.json?".format(
+                id=tweet_id
+            )
         )
 
     @property
