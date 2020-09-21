@@ -1,12 +1,10 @@
-from ..TwitterBot import TwitterBot
-from operator import itemgetter
-
 import datetime as dt
 import itertools
 import logging
 import os
-import random
-import time
+import sys
+
+from ..TwitterBot import TwitterBot
 
 
 def get_bot():
@@ -17,7 +15,7 @@ def get_bot():
         key = os.environ["TWITTER_ACCESS_TOKEN"]
         secret = os.environ["TWITTER_ACCESS_TOKEN_SECRET"]
     except KeyError:
-        logger.exception('bad config')
+        logger.exception("bad config")
         raise RuntimeError
     return TwitterBot(consumer_key, consumer_secret, key, secret)
 
@@ -41,7 +39,9 @@ def get_oldest_tweet(get_tweets_fn, days, max_id=None):
         except RuntimeError:
             logger.exception("could not get tweets")
         logger.info("my tweets %s" % [t["id"] for t in my_tweets])
-        old_tweets = list(itertools.dropwhile(is_tweet_younger_than_x_days, my_tweets))
+        old_tweets = list(
+            itertools.dropwhile(is_tweet_younger_than_x_days, my_tweets)
+        )
         if len(old_tweets):
             first_old_tweet_id = old_tweets[0]["id"]
             logger.debug("found oldest %s" % first_old_tweet_id)
