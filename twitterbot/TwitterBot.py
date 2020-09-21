@@ -92,6 +92,9 @@ class TwitterBot:
             search_query["max_id"] = max_id
         url = self.tweets_url + urlencode(search_query)
         response, tweets = self.__client.request(
-            url.encode("ascii"), method="GET", body="".encode("utf-8"), headers=None
+            url.encode("ascii"),
+            method="GET",
+            body="".encode("utf-8"),
+            headers=None,
         )
         return response, json.loads(tweets.decode("utf-8"))
