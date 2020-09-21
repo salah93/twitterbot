@@ -205,7 +205,7 @@ def tweet():
 @httpretty.activate
 def test_get(bot, tweet):
     httpretty.register_uri(
-        httpretty.GET, bot.my_tweets_url, json=[tweet], status=200
+        httpretty.GET, bot.tweets_url, json=[tweet], status=200
     )
     response, tweets = bot.get_my_tweets()
     assert response.status == 200
